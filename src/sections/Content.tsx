@@ -78,7 +78,6 @@ export function Impact() {
   return (
     <section id="impact" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="02" title="Transformation with measurable impact" eyebrow="RESULTS" />
-
       <div className="impact-layout">
         <div className="impact-grid">
           {profile.impact.map((entry, index) => (
@@ -96,7 +95,6 @@ export function Impact() {
             </button>
           ))}
         </div>
-
         <div className="impact-story" key={item.label}>
           <span className="impact-story-label">Selected result · 0{selected + 1}</span>
           <div className="impact-story-main">
@@ -107,7 +105,6 @@ export function Impact() {
           <span className="impact-story-hint">Select another result to explore</span>
         </div>
       </div>
-
       <div className="secondary-impact">
         {profile.additionalImpact.map((entry) => (
           <div key={entry.label} className="secondary-impact-item">
@@ -116,7 +113,6 @@ export function Impact() {
           </div>
         ))}
       </div>
-
       <div className="impact-note">
         <span className="impact-note-mark">RESULTS</span>
         <p>Selected operational results from manufacturing and materials-supply transformation work.</p>
@@ -167,9 +163,11 @@ export function Career() {
     <section id="career" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="04" title="Career" eyebrow="EXPERIENCE" />
       <div className="career-layout">
-        <div className="career-photo-wrap">
-          <img src="/images/sebastian-natural.jpg" alt="Sebastian Miedziak" className="career-photo" />
-          <span>From finance to AI transformation</span>
+        <div className="career-intro">
+          <div className="career-intro-mark">CAREER</div>
+          <p>From finance and audit through business innovation, supply chain and manufacturing to AI transformation.</p>
+          <div className="career-intro-line" />
+          <span>Finance → Innovation → Supply Chain → Manufacturing → AI</span>
         </div>
         <div className="career-list">
           {profile.journey.map((job, index) => {
@@ -203,7 +201,6 @@ function MailIcon({ className = "h-4 w-4" }: { className?: string }) {
 export function Contact() {
   const ref = useReveal<HTMLElement>();
   const [copied, setCopied] = useState(false);
-
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(profile.email);
@@ -218,7 +215,6 @@ export function Contact() {
     setCopied(true);
     window.setTimeout(() => setCopied(false), 2000);
   };
-
   return (
     <section id="contact" ref={ref} className="content-section contact-section reveal-on-scroll">
       <SectionHeading n="05" title="Contact" eyebrow="CONNECT" />
