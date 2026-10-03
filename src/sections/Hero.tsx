@@ -31,8 +31,10 @@ export default function Hero() {
           </div>
 
           <div className="hero-title-wrap reveal" style={{ animationDelay: "0.15s" }}>
-            <span className="hero-title-overline">SEBASTIAN</span>
-            <h1 className="hero-title">MIEDZIAK</h1>
+            <h1 className="hero-title">
+              <span className="hero-first-name">SEBASTIAN</span>
+              <span className="hero-last-name">MIEDZIAK</span>
+            </h1>
           </div>
 
           <p className="hero-role reveal" style={{ animationDelay: "0.28s" }}>
@@ -65,17 +67,8 @@ export default function Hero() {
           className="hero-portrait-wrap reveal"
           style={{ animationDelay: "0.34s", transform: `translate3d(${pointer.x}px, ${pointer.y}px, 0)` }}
         >
-          <div className="hero-portrait-label">
-            <span>01</span>
-            <span>Executive profile</span>
-          </div>
           <div className="portrait-frame">
             <img src="/images/sebastian-portrait.jpg" alt="Sebastian Miedziak" className="hero-portrait" />
-            <div className="portrait-caption">
-              <span>Manufacturing</span>
-              <span>Transformation</span>
-              <span>AI</span>
-            </div>
           </div>
           <div className="hero-role-card" aria-label="Current strategic focus">
             <span>Current focus</span>
