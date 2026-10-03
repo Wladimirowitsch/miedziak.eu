@@ -20,12 +20,12 @@ export function About() {
   return (
     <section id="about" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="01" title="The through-line" eyebrow="ABOUT" />
-      <div className="grid gap-10 lg:grid-cols-[1.12fr_.88fr] lg:gap-16">
-        <div>
+      <div className="about-layout">
+        <div className="about-copy">
           <p className="lead-copy">{profile.about}</p>
           <div className="career-thread" aria-label="Career progression">
-            {['Finance & Controlling', 'Business Innovation', 'Supply Chain', 'Manufacturing', 'Automation', 'AI Transformation'].map((item, index) => (
-              <span key={item}><b>{String(index + 1).padStart(2, '0')}</b>{item}</span>
+            {["Finance & Controlling", "Business Innovation", "Supply Chain", "Manufacturing", "Automation", "AI Transformation"].map((item, index) => (
+              <span key={item}><b>{String(index + 1).padStart(2, "0")}</b>{item}</span>
             ))}
           </div>
         </div>
@@ -55,9 +55,30 @@ export function Impact() {
   const ref = useReveal<HTMLElement>();
   const [selected, setSelected] = useState(0);
   const item = profile.impact[selected];
+
+  const story = [
+    {
+      label: "Manufacturing turnaround",
+      text: "A measurable reduction in total loss within refrigerator manufacturing, alongside broader operational performance improvement.",
+    },
+    {
+      label: "Productivity improvement",
+      text: "A measurable productivity improvement in the manufacturing operation, reflected in the selected result.",
+    },
+    {
+      label: "Logistics automation",
+      text: "Automation reduced manual logistics work while redesigning material flows across the operation.",
+    },
+    {
+      label: "Operational discipline",
+      text: "Unplanned overtime was reduced through operational discipline and process improvement.",
+    },
+  ];
+
   return (
     <section id="impact" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="02" title="Transformation with measurable impact" eyebrow="RESULTS" />
+
       <div className="impact-layout">
         <div className="impact-grid">
           {profile.impact.map((entry, index) => (
@@ -75,24 +96,31 @@ export function Impact() {
             </button>
           ))}
         </div>
+
         <div className="impact-story" key={item.label}>
           <span className="impact-story-label">Selected result · 0{selected + 1}</span>
-          <strong>{item.value} {item.label}</strong>
-          <p>{selected === 0 ? 'A substantial reduction in total loss within refrigerator manufacturing.' : selected === 1 ? 'A measurable productivity improvement in the manufacturing operation.' : selected === 2 ? 'Automation reduced manual logistics work while redesigning material flows.' : 'Unplanned overtime was reduced through operational discipline and process improvement.'}</p>
+          <div className="impact-story-main">
+            <strong>{item.value} {item.label}</strong>
+            <span>{story[selected].label}</span>
+            <p>{story[selected].text}</p>
+          </div>
           <span className="impact-story-hint">Select another result to explore</span>
         </div>
       </div>
+
       <div className="secondary-impact">
         {profile.additionalImpact.map((entry) => (
-          <div key={entry.label} className="secondary-impact-item"><span>{entry.value}</span><p>{entry.label}</p></div>
+          <div key={entry.label} className="secondary-impact-item">
+            <span>{entry.value}</span>
+            <p>{entry.label}</p>
+          </div>
         ))}
       </div>
-      <div className="impact-visuals" aria-label="Selected transformation evidence">
-        <figure className="impact-visual"><img src="/images/impact-ref.jpg" alt="Selected refrigerator manufacturing performance analysis" /><figcaption>Manufacturing performance</figcaption></figure>
-        <figure className="impact-visual"><img src="/images/impact-logistics.jpg" alt="Selected materials supply and logistics transformation analysis" /><figcaption>Logistics automation</figcaption></figure>
-        <figure className="impact-visual"><img src="/images/career-impact.jpg" alt="Selected career and operational achievements summary" /><figcaption>Achievement summary</figcaption></figure>
+
+      <div className="impact-note">
+        <span className="impact-note-mark">RESULTS</span>
+        <p>Selected operational results from manufacturing and materials-supply transformation work.</p>
       </div>
-      <p className="source-note">Selected operational results from manufacturing and materials-supply transformation work.</p>
     </section>
   );
 }
@@ -101,13 +129,20 @@ export function Transformation() {
   const ref = useReveal<HTMLElement>();
   const [selected, setSelected] = useState(0);
   const focus = profile.focus[selected];
+
   return (
     <section id="transformation" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="03" title="Transformation agenda" eyebrow="FOCUS" />
       <div className="transformation-layout">
         <div className="focus-grid">
           {profile.focus.map((f, i) => (
-            <button key={f.title} type="button" className={"focus-card " + (selected === i ? "focus-card-active" : "")} onClick={() => setSelected(i)} aria-pressed={selected === i}>
+            <button
+              key={f.title}
+              type="button"
+              className={"focus-card " + (selected === i ? "focus-card-active" : "")}
+              onClick={() => setSelected(i)}
+              aria-pressed={selected === i}
+            >
               <span className="focus-index">0{i + 1}</span>
               <span className="focus-card-title">{f.title}</span>
               <span className="focus-card-arrow">↗</span>
@@ -127,6 +162,7 @@ export function Transformation() {
 export function Career() {
   const ref = useReveal<HTMLElement>();
   const [open, setOpen] = useState(0);
+
   return (
     <section id="career" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="04" title="Career" eyebrow="EXPERIENCE" />
@@ -143,7 +179,10 @@ export function Career() {
                 <button type="button" className="career-trigger" onClick={() => setOpen(isOpen ? -1 : index)} aria-expanded={isOpen}>
                   <span className="career-period">{job.period}</span>
                   <span className="career-main">
-                    <span className="career-role-row"><span className="career-role">{job.role}</span><span className="career-toggle">{isOpen ? '−' : '+'}</span></span>
+                    <span className="career-role-row">
+                      <span className="career-role">{job.role}</span>
+                      <span className="career-toggle">{isOpen ? "−" : "+"}</span>
+                    </span>
                     <span className="career-org">{job.org}</span>
                   </span>
                 </button>
@@ -164,11 +203,22 @@ function MailIcon({ className = "h-4 w-4" }: { className?: string }) {
 export function Contact() {
   const ref = useReveal<HTMLElement>();
   const [copied, setCopied] = useState(false);
+
   const copyEmail = async () => {
-    try { await navigator.clipboard.writeText(profile.email); }
-    catch { const ta = document.createElement("textarea"); ta.value = profile.email; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); }
-    setCopied(true); window.setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(profile.email);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = profile.email;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 2000);
   };
+
   return (
     <section id="contact" ref={ref} className="content-section contact-section reveal-on-scroll">
       <SectionHeading n="05" title="Contact" eyebrow="CONNECT" />
@@ -184,7 +234,12 @@ export function Contact() {
         </div>
         <div className="contact-card">
           <div className="contact-qr-frame"><img src="/contact/sebastian-miedziak-contact.png" alt="QR code to save Sebastian Miedziak contact details" className="contact-qr" /></div>
-          <div className="contact-qr-copy"><span className="contact-qr-label">SAVE CONTACT</span><strong>Scan to save my details</strong><span>vCard with website, LinkedIn and email.</span><a href="/contact/sebastian-miedziak.vcf" download className="contact-vcard-link">Download vCard <ArrowUpRight className="h-3.5 w-3.5" /></a></div>
+          <div className="contact-qr-copy">
+            <span className="contact-qr-label">SAVE CONTACT</span>
+            <strong>Scan to save my details</strong>
+            <span>vCard with website, LinkedIn and email.</span>
+            <a href="/contact/sebastian-miedziak.vcf" download className="contact-vcard-link">Download vCard <ArrowUpRight className="h-3.5 w-3.5" /></a>
+          </div>
         </div>
       </div>
     </section>
