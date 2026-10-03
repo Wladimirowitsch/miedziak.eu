@@ -242,3 +242,189 @@
   .hero-grid, .hero-orbit-one, .hero-orbit-two, .hero-portrait-wrap { transform: none !important; transition: none !important; }
 }
 .scroll-progress { position: absolute; left: 0; top: 0; z-index: 40; height: 2px; background: var(--accent); box-shadow: 0 0 14px rgba(117,183,255,.45); transition: width .12s linear; }
+/* V5 — Executive graphite refinement */
+:root {
+  --bg: #111820;
+  --bg-soft: #171f28;
+  --text: #f5f7f9;
+  --muted: #a9b3be;
+  --line: rgba(255,255,255,.13);
+  --accent: #75b7ff;
+}
+
+html,
+body {
+  background: var(--bg);
+}
+
+.site-shell {
+  background: var(--bg);
+}
+
+.site-header {
+  background: rgba(17,24,32,.90);
+  border-color: rgba(255,255,255,.13);
+}
+
+.nav-link {
+  color: rgba(255,255,255,.72);
+}
+
+.nav-link:hover,
+.nav-link-active {
+  color: white;
+}
+
+.hero-section {
+  background:
+    radial-gradient(
+      circle at 72% 45%,
+      rgba(67,115,158,.24),
+      transparent 34%
+    ),
+    linear-gradient(
+      125deg,
+      #111820 0%,
+      #131c25 48%,
+      #14202a 100%
+    );
+}
+
+.hero-grid {
+  opacity: .38;
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.045) 1px,
+      transparent 1px
+    );
+}
+
+.hero-grid::after {
+  background:
+    radial-gradient(
+      circle at 65% 50%,
+      transparent 0,
+      rgba(17,24,32,.08) 38%,
+      rgba(17,24,32,.72) 82%
+    );
+}
+
+.hero-kicker {
+  color: rgba(255,255,255,.62);
+}
+
+.hero-sub {
+  color: rgba(255,255,255,.66);
+}
+
+.hero-copy {
+  color: rgba(255,255,255,.78);
+}
+
+.hero-button-secondary {
+  border-color: rgba(255,255,255,.25);
+  color: rgba(255,255,255,.88);
+}
+
+.content-section {
+  border-color: rgba(255,255,255,.13);
+}
+
+.section-eyebrow {
+  color: rgba(255,255,255,.48);
+}
+
+.lead-copy {
+  color: rgba(255,255,255,.90);
+}
+
+.about-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.075),
+      rgba(255,255,255,.025)
+    );
+}
+
+.about-card-label {
+  color: rgba(255,255,255,.52);
+}
+
+.impact-card {
+  background:
+    linear-gradient(
+      150deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.015)
+    );
+}
+
+.impact-card:hover {
+  background: rgba(117,183,255,.085);
+}
+
+.impact-label {
+  color: rgba(255,255,255,.94);
+}
+
+.impact-detail {
+  color: rgba(255,255,255,.52);
+}
+
+.secondary-impact-item p {
+  color: rgba(255,255,255,.52);
+}
+
+.source-note {
+  color: rgba(255,255,255,.40);
+}
+
+.focus-card:hover {
+  background: rgba(255,255,255,.045);
+}
+
+.focus-card p {
+  color: rgba(255,255,255,.58);
+}
+
+.career-org {
+  color: rgba(255,255,255,.64);
+}
+
+.career-scope {
+  color: rgba(255,255,255,.52);
+}
+
+.contact-panel {
+  background:
+    radial-gradient(
+      circle at 75% 0%,
+      rgba(117,183,255,.15),
+      transparent 36%
+    ),
+    rgba(255,255,255,.045);
+}
+
+.contact-copy {
+  color: rgba(255,255,255,.58);
+}
+
+.portrait-float-card {
+  background: rgba(17,24,32,.88);
+  border-color: rgba(255,255,255,.18);
+}
+
+.hero-status {
+  background: rgba(17,24,32,.72);
+  border-color: rgba(255,255,255,.14);
+}
+
+.site-footer {
+  color: rgba(255,255,255,.42);
+}
