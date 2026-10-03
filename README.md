@@ -71,3 +71,4 @@ export default defineConfig([
   },
 ])
 ```
+Cloudflare build integration test
