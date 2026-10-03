@@ -29,15 +29,21 @@ export function About() {
             ))}
           </div>
         </div>
-        <div className="about-card">
-          <span className="about-card-label">Current mandate</span>
-          <div className="mt-6 space-y-6">
-            {profile.currentRoles.map((role) => (
-              <div key={role.role} className="border-l border-white/20 pl-5">
-                <h3 className="text-lg font-medium text-white">{role.role}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-white/60">{role.scope}</p>
-              </div>
-            ))}
+        <div className="about-visual-stack">
+          <figure className="about-portrait">
+            <img src="/images/sebastian-natural.jpg" alt="Sebastian Miedziak" />
+            <figcaption>Leadership · Manufacturing · Transformation</figcaption>
+          </figure>
+          <div className="about-card">
+            <span className="about-card-label">Current mandate</span>
+            <div className="mt-6 space-y-6">
+              {profile.currentRoles.map((role) => (
+                <div key={role.role} className="border-l border-slate-300 pl-5">
+                  <h3 className="text-lg font-medium text-slate-900">{role.role}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-500">{role.scope}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -58,7 +64,7 @@ export function Impact() {
             <button
               key={entry.label}
               type="button"
-              className={`impact-card ${selected === index ? 'impact-card-active' : ''}`}
+              className={"impact-card " + (selected === index ? "impact-card-active" : "")}
               onClick={() => setSelected(index)}
               aria-pressed={selected === index}
             >
@@ -81,6 +87,11 @@ export function Impact() {
           <div key={entry.label} className="secondary-impact-item"><span>{entry.value}</span><p>{entry.label}</p></div>
         ))}
       </div>
+      <div className="impact-visuals" aria-label="Selected transformation evidence">
+        <figure className="impact-visual"><img src="/images/impact-ref.jpg" alt="Selected refrigerator manufacturing performance analysis" /><figcaption>Manufacturing performance</figcaption></figure>
+        <figure className="impact-visual"><img src="/images/impact-logistics.jpg" alt="Selected materials supply and logistics transformation analysis" /><figcaption>Logistics automation</figcaption></figure>
+        <figure className="impact-visual"><img src="/images/career-impact.jpg" alt="Selected career and operational achievements summary" /><figcaption>Achievement summary</figcaption></figure>
+      </div>
       <p className="source-note">Selected operational results from manufacturing and materials-supply transformation work.</p>
     </section>
   );
@@ -96,7 +107,7 @@ export function Transformation() {
       <div className="transformation-layout">
         <div className="focus-grid">
           {profile.focus.map((f, i) => (
-            <button key={f.title} type="button" className={`focus-card ${selected === i ? 'focus-card-active' : ''}`} onClick={() => setSelected(i)} aria-pressed={selected === i}>
+            <button key={f.title} type="button" className={"focus-card " + (selected === i ? "focus-card-active" : "")} onClick={() => setSelected(i)} aria-pressed={selected === i}>
               <span className="focus-index">0{i + 1}</span>
               <span className="focus-card-title">{f.title}</span>
               <span className="focus-card-arrow">↗</span>
@@ -128,7 +139,7 @@ export function Career() {
           {profile.journey.map((job, index) => {
             const isOpen = open === index;
             return (
-              <article key={`${job.period}-${job.role}`} className={`career-item ${isOpen ? 'career-item-open' : ''}`}>
+              <article key={job.period + "-" + job.role} className={"career-item " + (isOpen ? "career-item-open" : "")}>
                 <button type="button" className="career-trigger" onClick={() => setOpen(isOpen ? -1 : index)} aria-expanded={isOpen}>
                   <span className="career-period">{job.period}</span>
                   <span className="career-main">
@@ -166,9 +177,9 @@ export function Contact() {
           <p className="contact-title">Let&rsquo;s build what comes next.</p>
           <p className="contact-copy">For professional conversations around manufacturing, AI transformation, business innovation or operational excellence.</p>
           <div className="contact-actions mt-7">
-            <a href={`mailto:${profile.email}`} className="hero-button hero-button-primary"><MailIcon /> {profile.email}</a>
+            <a href={"mailto:" + profile.email} className="hero-button hero-button-primary"><MailIcon /> {profile.email}</a>
             <button type="button" onClick={copyEmail} className="contact-copy-button">{copied ? "Copied to clipboard" : "Copy email address"}</button>
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-white/65 transition hover:text-white"><LinkedInIcon className="h-4 w-4" /> {profile.linkedinLabel} <ArrowUpRight className="h-3.5 w-3.5" /></a>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="contact-link"><LinkedInIcon className="h-4 w-4" /> {profile.linkedinLabel} <ArrowUpRight className="h-3.5 w-3.5" /></a>
           </div>
         </div>
         <div className="contact-card">
