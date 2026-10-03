@@ -31,7 +31,7 @@ export function About() {
         </div>
         <div className="about-visual-stack">
           <figure className="about-portrait">
-            <img src="/images/sebastian-natural.jpg" alt="Sebastian Miedziak" />
+            <img src="/images/sebastian-cap.jpg" alt="Sebastian Miedziak" />
             <figcaption>Leadership · Manufacturing · Transformation</figcaption>
           </figure>
           <div className="about-card">
@@ -163,10 +163,8 @@ export function Career() {
     <section id="career" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="04" title="Career" eyebrow="EXPERIENCE" />
       <div className="career-layout">
-        <div className="career-intro">
-          <div className="career-intro-mark">CAREER</div>
-          <p>From finance and audit through business innovation, supply chain and manufacturing to AI transformation.</p>
-          <div className="career-intro-line" />
+        <div className="career-photo-wrap">
+          <img src="/images/sebastian-editorial.jpg" alt="Sebastian Miedziak" className="career-photo" />
           <span>Finance → Innovation → Supply Chain → Manufacturing → AI</span>
         </div>
         <div className="career-list">
