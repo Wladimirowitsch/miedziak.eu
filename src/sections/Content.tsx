@@ -40,25 +40,31 @@ export function About() {
 
 export function Impact() {
   const ref = useReveal<HTMLElement>();
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <section id="impact" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="02" title="Selected impact" eyebrow="RESULTS" />
+      <div className="impact-intro">
+        <p>Selected operational outcomes from manufacturing and materials-supply transformation work.</p>
+        <span>Click a result to expand</span>
+      </div>
       <div className="impact-grid">
-        {profile.impact.map((item) => (
-          <article key={item.label} className="impact-card">
-            <span className="impact-value">{item.value}</span>
-            <h3 className="impact-label">{item.label}</h3>
-            <p className="impact-detail">{item.detail}</p>
-          </article>
-        ))}
+        {profile.impact.map((item, i) => {
+          const isOpen = open === i;
+          return (
+            <button type="button" key={item.label} className={`impact-card ${isOpen ? "is-open" : ""}`} onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen}>
+              <span className="impact-card-top"><span>0{i + 1}</span><span>{isOpen ? "Close" : "Details"}</span></span>
+              <span className="impact-value">{item.value}</span>
+              <span className="impact-label">{item.label}</span>
+              <span className="impact-detail">{item.detail}</span>
+              <span className="impact-expand">{isOpen ? "—" : "+"}</span>
+              {isOpen && <span className="impact-expanded">A measurable operational improvement used as part of a broader performance and transformation agenda.</span>}
+            </button>
+          );
+        })}
       </div>
       <div className="secondary-impact">
-        {profile.additionalImpact.map((item) => (
-          <div key={item.label} className="secondary-impact-item">
-            <span>{item.value}</span>
-            <p>{item.label}</p>
-          </div>
-        ))}
+        {profile.additionalImpact.map((item) => <div key={item.label} className="secondary-impact-item"><span>{item.value}</span><p>{item.label}</p></div>)}
       </div>
       <p className="source-note">Selected operational results from manufacturing and materials-supply transformation work.</p>
     </section>
@@ -67,17 +73,26 @@ export function Impact() {
 
 export function Transformation() {
   const ref = useReveal<HTMLElement>();
+  const [selected, setSelected] = useState(0);
   return (
     <section id="transformation" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="03" title="Transformation agenda" eyebrow="FOCUS" />
-      <div className="focus-grid">
-        {profile.focus.map((f, i) => (
-          <article key={f.title} className="focus-card">
-            <div className="focus-index">0{i + 1}</div>
-            <h3>{f.title}</h3>
-            <p>{f.text}</p>
-          </article>
-        ))}
+      <div className="transformation-layout">
+        <div className="focus-grid">
+          {profile.focus.map((f, i) => (
+            <button type="button" key={f.title} className={`focus-card ${selected === i ? "is-selected" : ""}`} onClick={() => setSelected(i)} aria-pressed={selected === i}>
+              <span className="focus-index">0{i + 1}</span>
+              <span className="focus-card-title">{f.title}</span>
+              <span className="focus-arrow">↗</span>
+            </button>
+          ))}
+        </div>
+        <div className="focus-detail">
+          <span className="focus-detail-label">0{selected + 1} / ACTIVE FOCUS</span>
+          <h3>{profile.focus[selected].title}</h3>
+          <p>{profile.focus[selected].text}</p>
+          <div className="focus-detail-line"><span /> <small>Strategy · Execution · Measurable impact</small></div>
+        </div>
       </div>
     </section>
   );
@@ -85,6 +100,7 @@ export function Transformation() {
 
 export function Career() {
   const ref = useReveal<HTMLElement>();
+  const [open, setOpen] = useState(0);
   return (
     <section id="career" ref={ref} className="content-section reveal-on-scroll">
       <SectionHeading n="04" title="Career" eyebrow="EXPERIENCE" />
@@ -94,16 +110,17 @@ export function Career() {
           <span>From finance to AI transformation</span>
         </div>
         <div className="career-list">
-          {profile.journey.map((job) => (
-            <article key={`${job.period}-${job.role}`} className="career-item">
-              <div className="career-period">{job.period}</div>
-              <div>
-                <h3>{job.role}</h3>
-                <p className="career-org">{job.org}</p>
-                <p className="career-scope">{job.scope}</p>
-              </div>
-            </article>
-          ))}
+          {profile.journey.map((job, i) => {
+            const isOpen = open === i;
+            return (
+              <button type="button" key={`${job.period}-${job.role}`} className={`career-item ${isOpen ? "is-open" : ""}`} onClick={() => setOpen(isOpen ? -1 : i)} aria-expanded={isOpen}>
+                <span className="career-period">{job.period}</span>
+                <span className="career-content"><span className="career-item-head"><span><span className="career-role">{job.role}</span><span className="career-org">{job.org}</span></span><span className="career-toggle">{isOpen ? "−" : "+"}</span></span>
+                {isOpen && <span className="career-scope">{job.scope}</span>}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>
