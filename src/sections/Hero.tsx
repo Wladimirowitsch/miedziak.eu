@@ -1,53 +1,38 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { profile } from "@/data/profile";
 import { ArrowDown, ArrowUpRight, LinkedInIcon } from "@/components/icons";
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const [pointer, setPointer] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const onMove = (event: PointerEvent) => {
-      const rect = section.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-      section.style.setProperty("--mx", `${x.toFixed(3)}`);
-      section.style.setProperty("--my", `${y.toFixed(3)}`);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    const onMove = (event: MouseEvent) => {
+      setPointer({
+        x: (event.clientX / window.innerWidth - 0.5) * 10,
+        y: (event.clientY / window.innerHeight - 0.5) * 7,
+      });
     };
-    const onLeave = () => {
-      section.style.setProperty("--mx", "0");
-      section.style.setProperty("--my", "0");
-    };
-    section.addEventListener("pointermove", onMove);
-    section.addEventListener("pointerleave", onLeave);
-    return () => {
-      section.removeEventListener("pointermove", onMove);
-      section.removeEventListener("pointerleave", onLeave);
-    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
   return (
-    <section ref={sectionRef} id="top" className="hero-section">
+    <section id="top" className="hero-section">
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
       <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
-      <div className="hero-factory-lines" aria-hidden="true"><span /><span /><span /><span /></div>
 
-      <div className="hero-status reveal" style={{ animationDelay: "0.1s" }}>
-        <span className="status-dot" />
-        <span>Executive profile</span>
-        <span className="status-divider" />
-        <span>Manufacturing · AI · Transformation</span>
-      </div>
-
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-76px)] max-w-[1500px] items-center gap-10 px-5 py-14 sm:px-10 sm:py-20 lg:grid-cols-[1.05fr_.95fr] lg:px-16 lg:py-24">
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-69px)] max-w-[1500px] items-center gap-12 px-5 py-12 sm:px-10 sm:py-16 lg:grid-cols-[1.04fr_.96fr] lg:px-16 lg:py-20">
         <div className="max-w-4xl">
-          <p className="hero-kicker reveal" style={{ animationDelay: "0.05s" }}>
-            {profile.company} · {profile.location}
-          </p>
+          <div className="hero-kicker-row reveal" style={{ animationDelay: "0.05s" }}>
+            <span className="hero-kicker">Samsung Electronics · Poznań · Poland</span>
+            <span className="hero-kicker-rule" aria-hidden="true" />
+          </div>
           <h1 className="hero-title reveal" style={{ animationDelay: "0.15s" }}>
-            {profile.firstName}<span>{profile.lastName}</span>
+            {profile.firstName}
+            <span>{profile.lastName}</span>
           </h1>
           <p className="hero-role reveal" style={{ animationDelay: "0.28s" }}>{profile.headline}</p>
           <p className="hero-sub reveal" style={{ animationDelay: "0.38s" }}>{profile.subheadline}</p>
@@ -62,20 +47,23 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-portrait-wrap reveal" style={{ animationDelay: "0.34s" }}>
-          <div className="portrait-frame">
-            <img src="/images/sebastian-portrait.jpg" alt="Sebastian Miedziak" className="hero-portrait" />
-            <div className="portrait-caption">
-              <span>01 / Executive profile</span>
-              <span>AI · Manufacturing · Transformation</span>
-            </div>
-          </div>
-          <div className="portrait-accent" aria-hidden="true" />
-          <div className="portrait-float-card">
-            <span>NOW</span>
+        <div
+          className="hero-portrait-wrap reveal"
+          style={{ animationDelay: "0.34s", transform: `translate3d(${pointer.x}px, ${pointer.y}px, 0)` }}
+        >
+          <div className="hero-role-card" aria-label="Current strategic focus">
+            <span>Current focus</span>
             <strong>AI Transformation</strong>
             <small>Strategy · Innovation · Execution</small>
           </div>
+          <div className="portrait-frame">
+            <img src="/images/sebastian-portrait.jpg" alt="Sebastian Miedziak" className="hero-portrait" />
+            <div className="portrait-caption">
+              <span>Executive profile</span>
+              <span>Manufacturing · AI · Transformation</span>
+            </div>
+          </div>
+          <div className="portrait-accent" aria-hidden="true" />
         </div>
       </div>
     </section>
