@@ -58,12 +58,7 @@ export default function Hero() {
           </div>
           <div className="portrait-frame">
             <img src="/images/sebastian-portrait.jpg" alt="Sebastian Miedziak" className="hero-portrait" />
-            <div className="portrait-caption">
-              <span>Executive profile</span>
-              <span>Manufacturing · AI · Transformation</span>
-            </div>
           </div>
-          <div className="portrait-accent" aria-hidden="true" />
         </div>
       </div>
     </section>
