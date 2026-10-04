@@ -12,12 +12,12 @@ export const profile = {
   email: "sebastian.miedziak@gmail.com",
   currentRoles: [
     {
-      role: "Director — AX Strategy & Business Innovation",
+      role: "Director — AX (AI) Strategy & Business Innovation",
       scope: "AI transformation, business innovation and digital strategy",
     },
     {
-      role: "Director — Refrigerator Manufacturing & Materials Supply Innovation",
-      scope: "Production leadership, manufacturing transformation and materials supply",
+      role: "Director — Refrigerator Manufacturing",
+      scope: "Production leadership and manufacturing transformation",
     },
   ],
   about:
@@ -25,15 +25,15 @@ export const profile = {
   journey: [
     {
       period: "2026 — Present",
-      role: "Director — AX Strategy & Business Innovation",
+      role: "Director — AX (AI) Strategy & Business Innovation",
       org: "Samsung Electronics",
       scope: "AI transformation, business innovation and digital strategy.",
     },
     {
       period: "2025 — Present",
-      role: "Director — Refrigerator Manufacturing & Materials Supply Innovation",
+      role: "Director — Refrigerator Manufacturing",
       org: "Samsung Electronics",
-      scope: "End-to-end refrigerator manufacturing and materials supply leadership.",
+      scope: "Production leadership and manufacturing transformation.",
     },
     {
       period: "2022 — 2025",
